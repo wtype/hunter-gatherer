@@ -24,6 +24,9 @@ export default {
   margin: 0;
   padding: 0;
 }
+:root {
+  font-size: 16px;
+}
 body {
   background: rgb(199, 194, 185);
   color: #212121;
@@ -37,5 +40,10 @@ main {
   padding: 5vmin;
   height: 100vh;
   overflow: hidden;
+}
+@media (max-width: 1000px) {
+  :root {
+    font-size: 13px;
+  }
 }
 </style>

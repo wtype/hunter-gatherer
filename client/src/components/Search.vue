@@ -1,8 +1,14 @@
 <template>
-  <form @submit.prevent="isolateSearchQueries">
-    <input v-model="query" autofocus="true" maxlength="100" />
-    <h1 v-if="searchTerms.length">{{searchTerms}}</h1>
-  </form>
+  <section>
+    <form @submit.prevent="isolateSearchQueries">
+      <input v-model="query" autofocus="true" maxlength="100" />
+    </form>
+    <div class="searchTerms">
+      <ul>
+        <li v-for="term in searchTerms" :key="term">{{term}}</li>
+      </ul>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -44,5 +50,25 @@ input {
 }
 h1 {
   color: #f1966f;
+}
+.searchTerms ul {
+  max-width: 80vw;
+  display: flex;
+  list-style: none;
+  flex-wrap: wrap;
+}
+.searchTerms li {
+  cursor: cell;
+  font-size: 1.5rem;
+  padding: 1rem 1.5rem;
+  background: #f1966f;
+  margin-right: 0.25rem;
+  margin-bottom: 0.25rem;
+  border-radius: 0.25rem;
+  text-transform: capitalize;
+  box-shadow: 10px 10px 100px rgba(100, 100, 100, 0.25);
+}
+.searchTerms li:hover {
+  filter: hue-rotate(-30deg);
 }
 </style>

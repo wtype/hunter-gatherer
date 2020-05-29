@@ -19,14 +19,15 @@ export default new Vuex.Store({
   actions: {
     isolateSearchQueries(context) {
       const term = context.state.searchQuery.replace(/\W/g, "");
-      if (term === "" || term.length < 1) return;
-      const array = context.state.searchQuery
+      if (term === '' || term.length < 1) return;
+      const queries = context.state.searchQuery
         .toLowerCase()
         .trim()
-        .split(" ");
-      array.forEach(element => {
+        .split(' ');
+      queries.forEach(element => {
         if (!context.state.searchTerms.includes(element)) {
           context.commit('fillSearchTerms', element);
+          context.commit('setSearchQuery', '');
         }
       });
     }

@@ -17,12 +17,28 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    sendSearch(context) {
+      const url = 'http://localhost:9090/search';
+      const payload = context.state.searchTerms;
+
+      if (!(payload.length > 0 && payload.length < 50)) return;
+
+      fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(payload),
+        headers: {
+          'content-type': 'application/json'
+        }
+      }).then(response => console.log(response))
+        .catch(error => console.log('ERROR: ', error));
+    },
     isolateSearchQueries(context) {
       const term = context.state.searchQuery.replace(/\W/g, "");
       if (term === '' || term.length < 1) return;
       const queries = context.state.searchQuery
         .toLowerCase()
         .trim()
+        .replace(/[ ]{2,}/g)
         .split(' ');
       queries.forEach(element => {
         if (!context.state.searchTerms.includes(element)) {
@@ -30,6 +46,7 @@ export default new Vuex.Store({
           context.commit('setSearchQuery', '');
         }
       });
+      context.dispatch('sendSearch');
     }
   }
 });

@@ -38,21 +38,26 @@ export default {
 :active {
   outline: none;
 }
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
 form {
-  max-width: 100rem;
+  width: 100%;
 }
 input {
+  width: 100%;
   background: inherit;
   border: none;
   font-size: 5rem;
   line-break: auto;
   white-space: pre-wrap;
 }
-h1 {
-  color: #f1966f;
-}
 .searchTerms ul {
-  max-width: 80vw;
+  margin: 2rem 0;
   display: flex;
   list-style: none;
   flex-wrap: wrap;
@@ -61,14 +66,17 @@ h1 {
   cursor: cell;
   font-size: 1.5rem;
   padding: 1rem 1.5rem;
-  background: #f1966f;
+  background: #ffb57c;
   margin-right: 0.25rem;
   margin-bottom: 0.25rem;
   border-radius: 0.25rem;
   text-transform: capitalize;
-  box-shadow: 10px 10px 100px rgba(100, 100, 100, 0.25);
+  box-shadow: 5px 5px 40px rgba(70, 70, 70, 0.15);
+  transition: 100ms;
 }
 .searchTerms li:hover {
-  filter: hue-rotate(-30deg);
+  box-shadow: 10px 10px 40px rgba(70, 70, 70, 0.2);
+  transform: translateY(-2px);
+  filter: brightness(1.05);
 }
 </style>

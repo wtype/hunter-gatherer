@@ -75,8 +75,8 @@ input {
   transition: 100ms;
 }
 .searchTerms li:hover {
-  box-shadow: 10px 10px 40px rgba(70, 70, 70, 0.2);
-  transform: translateY(-2px);
+  box-shadow: 5px 5px 45px rgba(70, 70, 70, 0.2);
+  transform: translateY(-1.5px);
   filter: brightness(1.05);
 }
 </style>

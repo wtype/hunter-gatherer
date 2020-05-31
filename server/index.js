@@ -30,7 +30,7 @@ app.post('/search', (req, res) => {
 app.get('/', (req, res) => {
   res.json({
     introduction: '፨ Hunter Gatherer is a web scraper based on user input ፨'
-  })
+  });
 });
 
 const port = 9090;

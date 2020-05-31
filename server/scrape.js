@@ -16,5 +16,5 @@ if (scrapes.length) {
     });
   });
 } else {
-  console.log('Nothing here to scrape');
+  console.log('Nothing to scrape');
 }

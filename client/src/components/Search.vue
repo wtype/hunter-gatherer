@@ -5,31 +5,32 @@
     </form>
     <div class="searchTerms">
       <ul>
-        <li v-for="term in searchTerms" :key="term">{{term}}</li>
+        <li v-for="term in searchTerms" :key="term" @click="removeTerm(term)">{{ term }}</li>
       </ul>
     </div>
   </section>
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions, mapMutations } from 'vuex';
 
 export default {
-  name: "Search",
+  name: 'Search',
   computed: {
     query: {
       get() {
         return this.$store.state.searchQuery;
       },
       set(value) {
-        this.$store.commit("setSearchQuery", value);
-      }
+        this.$store.commit('setSearchQuery', value);
+      },
     },
-    ...mapState(["searchQuery", "searchTerms"])
+    ...mapState(['searchQuery', 'searchTerms']),
   },
   methods: {
-    ...mapActions(["isolateSearchQueries"])
-  }
+    ...mapMutations(['removeTerm']),
+    ...mapActions(['isolateSearchQueries']),
+  },
 };
 </script>
 
@@ -63,7 +64,7 @@ input {
   flex-wrap: wrap;
 }
 .searchTerms li {
-  cursor: cell;
+  cursor: default;
   font-size: 1.5rem;
   padding: 1rem 1.5rem;
   background: #ffb57c;
@@ -78,5 +79,6 @@ input {
   box-shadow: 5px 5px 45px rgba(70, 70, 70, 0.2);
   transform: translateY(-1.5px);
   filter: brightness(1.05);
+  text-decoration: line-through;
 }
 </style>

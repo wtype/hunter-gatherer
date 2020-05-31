@@ -6,7 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     searchQuery: '',
-    searchTerms: []
+    searchTerms: [],
   },
   mutations: {
     setSearchQuery(state, value) {
@@ -14,7 +14,10 @@ export default new Vuex.Store({
     },
     fillSearchTerms(state, value) {
       state.searchTerms.push(value);
-    }
+    },
+    removeTerm(state, value) {
+      state.searchTerms.splice(state.searchTerms.indexOf(value), 1);
+    },
   },
   actions: {
     sendSearch(context) {
@@ -27,13 +30,14 @@ export default new Vuex.Store({
         method: 'POST',
         body: JSON.stringify(payload),
         headers: {
-          'content-type': 'application/json'
-        }
-      }).then(response => console.log(response))
+          'content-type': 'application/json',
+        },
+      })
+        .then(response => console.log(response))
         .catch(error => console.log('ERROR: ', error));
     },
     isolateSearchQueries(context) {
-      const term = context.state.searchQuery.replace(/\W/g, "");
+      const term = context.state.searchQuery.replace(/\W/g, '');
       if (term === '' || term.length < 1) return;
       const queries = context.state.searchQuery
         .toLowerCase()
@@ -47,6 +51,6 @@ export default new Vuex.Store({
         }
       });
       context.dispatch('sendSearch');
-    }
-  }
+    },
+  },
 });

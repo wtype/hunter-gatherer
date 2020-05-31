@@ -21,6 +21,7 @@ function isValid(input) {
 
 app.post('/search', (req, res) => {
   if (!isValid(req.body)) return;
+  console.log(`Input: ${req.body}`);
   res.status(200).send({
     received: req.body
   });

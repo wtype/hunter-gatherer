@@ -78,7 +78,6 @@ input {
 .searchTerms li:hover {
   box-shadow: 5px 5px 45px rgba(70, 70, 70, 0.2);
   transform: translateY(-1.5px);
-  filter: brightness(1.05);
-  text-decoration: line-through;
+  filter: brightness(0.96) hue-rotate(-10deg);
 }
 </style>

@@ -1,7 +1,10 @@
 <template>
   <section>
-    <form @submit.prevent="isolateSearchQueries">
-      <input v-model="query" autofocus="true" maxlength="100" />
+    <form v-if="loading" @submit.prevent="isolateSearchQueries">
+      <input v-model="query" autofocus="true" maxlength="100" placeholder="Loading items..." />
+    </form>
+    <form v-else @submit.prevent="isolateSearchQueries">
+      <input v-model="query" autofocus="true" maxlength="100" placeholder="Enter search terms..." />
     </form>
     <div class="searchTerms">
       <ul>
@@ -25,7 +28,7 @@ export default {
         this.$store.commit('setSearchQuery', value);
       },
     },
-    ...mapState(['searchQuery', 'searchTerms']),
+    ...mapState(['searchQuery', 'searchTerms', 'loading']),
   },
   methods: {
     ...mapMutations(['removeTerm']),
@@ -56,6 +59,9 @@ input {
   font-size: 5rem;
   line-break: auto;
   white-space: pre-wrap;
+}
+input::placeholder {
+  opacity: 0.1;
 }
 .searchTerms ul {
   margin: 2rem 0;

@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     searchQuery: '',
     searchTerms: [],
+    loading: false,
   },
   mutations: {
     setSearchQuery(state, value) {
@@ -17,6 +18,9 @@ export default new Vuex.Store({
     },
     removeTerm(state, value) {
       state.searchTerms.splice(state.searchTerms.indexOf(value), 1);
+    },
+    setLoading(state, value) {
+      state.loading = value;
     },
   },
   actions: {
@@ -33,7 +37,10 @@ export default new Vuex.Store({
           'content-type': 'application/json',
         },
       })
-        .then(response => console.log(response))
+        .then(response => {
+          console.log(response);
+          context.commit('setLoading', false);
+        })
         .catch(error => console.log('ERROR: ', error));
     },
     isolateSearchQueries(context) {
@@ -47,12 +54,13 @@ export default new Vuex.Store({
       if (!queries.length) return;
 
       queries.forEach(element => {
-        if (element.trim() === '') {
+        if (element.trim() === '' || element === 'undefined') {
           context.commit('setSearchQuery', '');
           return;
         } else if (!context.state.searchTerms.includes(element)) {
           context.commit('fillSearchTerms', element);
           context.commit('setSearchQuery', '');
+          context.commit('setLoading', true);
         }
       });
       context.dispatch('sendSearch');

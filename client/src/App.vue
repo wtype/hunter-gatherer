@@ -6,15 +6,15 @@
 </template>
 
 <script>
-import Header from "./components/Header.vue";
-import Search from "./components/Search.vue";
+import Header from './components/Header.vue';
+import Search from './components/Search.vue';
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
     Header,
-    Search
-  }
+    Search,
+  },
 };
 </script>
 
@@ -28,7 +28,7 @@ export default {
   font-size: 16px;
 }
 body {
-  background: rgb(199, 194, 185);
+  background: rgb(224, 220, 210);
   color: #212121;
   font-family: helvetica, -apple-system, BlinkMacSystemFont, sans-serif;
 }

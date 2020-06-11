@@ -15,25 +15,25 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapMutations } from 'vuex';
+import { mapState, mapActions, mapMutations } from "vuex";
 
 export default {
-  name: 'Search',
+  name: "Search",
   computed: {
     query: {
       get() {
         return this.$store.state.searchQuery;
       },
       set(value) {
-        this.$store.commit('setSearchQuery', value);
-      },
+        this.$store.commit("setSearchQuery", value);
+      }
     },
-    ...mapState(['searchQuery', 'searchTerms', 'loading']),
+    ...mapState(["searchQuery", "searchTerms", "loading"])
   },
   methods: {
-    ...mapMutations(['removeTerm']),
-    ...mapActions(['isolateSearchQueries']),
-  },
+    ...mapMutations(["removeTerm"]),
+    ...mapActions(["isolateSearchQueries"])
+  }
 };
 </script>
 
@@ -70,10 +70,10 @@ input::placeholder {
   flex-wrap: wrap;
 }
 .searchTerms li {
-  cursor: default;
+  cursor: pointer;
   font-size: 1.5rem;
   padding: 1rem 1.5rem;
-  background: #ffb57c;
+  background: #ab9aff;
   margin-right: 0.25rem;
   margin-bottom: 0.25rem;
   border-radius: 0.25rem;

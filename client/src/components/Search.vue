@@ -15,10 +15,10 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapMutations } from "vuex";
+import { mapState, mapActions, mapMutations } from 'vuex';
 
 export default {
-  name: "Search",
+  name: 'Search',
   mounted() {
     this.setAutoFocus();
     window.onresize = this.setAutoFocus;
@@ -29,18 +29,18 @@ export default {
         return this.$store.state.searchQuery;
       },
       set(value) {
-        this.$store.commit("setSearchQuery", value);
-      }
+        this.$store.commit('setSearchQuery', value);
+      },
     },
-    ...mapState(["searchQuery", "searchTerms", "loading"])
+    ...mapState(['searchQuery', 'searchTerms', 'loading']),
   },
   methods: {
-    ...mapMutations(["removeTerm"]),
-    ...mapActions(["isolateSearchQueries"]),
+    ...mapMutations(['removeTerm']),
+    ...mapActions(['isolateSearchQueries']),
     setAutoFocus() {
       return this.isSmallScreen()
-        ? document.querySelector("input").blur()
-        : document.querySelector("input").focus();
+        ? document.querySelector('input').blur()
+        : document.querySelector('input').focus();
     },
     isSmallScreen() {
       return (
@@ -52,8 +52,8 @@ export default {
           document.documentElement.clientWidth
         ) < 900
       );
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -89,7 +89,7 @@ input::placeholder {
   cursor: pointer;
   font-size: 1.5rem;
   padding: 1rem 1.5rem;
-  background: #ab9aff;
+  background: #baacff;
   margin-right: 0.25rem;
   margin-bottom: 0.25rem;
   border-radius: 0.25rem;

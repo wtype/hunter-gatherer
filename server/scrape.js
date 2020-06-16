@@ -2,6 +2,7 @@ const fetch = require('node-fetch');
 const cheerio = require('cheerio');
 
 const scrapes = ['https://elliott.land'];
+const results = [];
 
 async function go() {
   if (!scrapes.length) return;
@@ -11,13 +12,15 @@ async function go() {
     const $ = cheerio.load(text);
     $('h1').each((index, element) => {
       const h1 = $(element);
-      console.log(`${index + 1}: ${h1.text()}`);
+      const text = h1.text();
+      results.push(text);
     });
+    return results;
   } catch (error) {
     console.log('ERROR: ', error);
   }
 }
 
 module.exports = {
-  go
+  go,
 };

@@ -2,19 +2,22 @@
   <main role="main">
     <Header />
     <Search />
+    <Results />
   </main>
 </template>
 
 <script>
-import Header from "./components/Header.vue";
-import Search from "./components/Search.vue";
+import Header from './components/Header.vue';
+import Search from './components/Search.vue';
+import Results from './components/Results.vue';
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
     Header,
-    Search
-  }
+    Search,
+    Results,
+  },
 };
 </script>
 
@@ -36,7 +39,7 @@ export default {
   outline: none;
 }
 body {
-  background: rgb(240, 242, 255);
+  background: rgb(250, 250, 255);
   color: #0e0e1c;
   font-family: helvetica, -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-overflow-scrolling: touch;

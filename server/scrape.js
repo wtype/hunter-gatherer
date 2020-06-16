@@ -1,20 +1,23 @@
 const fetch = require('node-fetch');
 const cheerio = require('cheerio');
 
-const scrapes = [];
+const scrapes = ['https://elliott.land'];
 
-function go() {
-  return fetch(scrapes[0]).then(response => response.text());
-}
-
-if (scrapes.length) {
-  go().then(body => {
-    const $ = cheerio.load(body);
+async function go() {
+  if (!scrapes.length) return;
+  try {
+    const page = await fetch(scrapes[0]);
+    const text = await page.text();
+    const $ = cheerio.load(text);
     $('h1').each((index, element) => {
       const h1 = $(element);
-      console.log(h1.text());
+      console.log(`${index + 1}: ${h1.text()}`);
     });
-  });
-} else {
-  console.log('Nothing to scrape');
+  } catch (error) {
+    console.log('ERROR: ', error);
+  }
 }
+
+module.exports = {
+  go
+};

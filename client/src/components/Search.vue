@@ -37,11 +37,6 @@ export default {
   methods: {
     ...mapMutations(['removeTerm']),
     ...mapActions(['isolateSearchQueries']),
-    setAutoFocus() {
-      return this.isSmallScreen()
-        ? document.querySelector('input').blur()
-        : document.querySelector('input').focus();
-    },
     isSmallScreen() {
       return (
         Math.max(
@@ -52,6 +47,11 @@ export default {
           document.documentElement.clientWidth
         ) < 900
       );
+    },
+    setAutoFocus() {
+      return this.isSmallScreen()
+        ? document.querySelector('input').blur()
+        : document.querySelector('input').focus();
     },
   },
 };
